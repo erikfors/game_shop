@@ -2,7 +2,7 @@ package com.erik.gameshop.network.model
 
 import com.google.gson.annotations.SerializedName
 
-class GameNetworkEntity(
+data class GameDto(
 
     @SerializedName(value = "id")
     val id: Int? = null,
