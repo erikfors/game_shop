@@ -35,11 +35,11 @@ class GameDtoMapper : DomainMapper<GameDto, Game>{
         )
     }
 
-    fun fromEntityList(initial: List<GameDto>) : List<Game>{
+    fun toDomainList(initial: List<GameDto>) : List<Game>{
         return initial.map { mapToDomainModel(it) }
     }
 
-    fun toEntityList(initial: List<Game>):List<GameDto>{
+    fun fromDomainList(initial: List<Game>):List<GameDto>{
         return initial.map { mapFromDomainModel(it) }
     }
 

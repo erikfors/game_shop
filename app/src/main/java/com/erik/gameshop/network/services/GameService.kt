@@ -8,7 +8,8 @@ interface GameService {
 
     @GET(value = "games")
     suspend fun getAllGames(
-        @Query(value = "key") token: String
+        @Query(value = "key") token: String,
+        @Query(value = "page") page: Int,
     ): GamesSearchResponse
 
     @GET(value = "games/{gameID}")
@@ -17,3 +18,4 @@ interface GameService {
         @Query(value = "key") token: String,
     ): GameDto
 }
+
