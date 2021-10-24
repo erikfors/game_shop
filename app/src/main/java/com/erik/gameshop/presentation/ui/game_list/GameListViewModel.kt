@@ -23,15 +23,18 @@ constructor(
 
     val games: MutableState<List<Game>>  = mutableStateOf(listOf())
 
-    init {
+    fun newSearch(){
         viewModelScope.launch{
             val result = repository.getAllGames(
                 token = token,
                 page = 1,
             )
             games.value = result
-            println("HEREEEEEEEE: ${games.value}")
         }
+    }
+
+    init {
+        newSearch()
     }
 
 }

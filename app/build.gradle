@@ -20,7 +20,11 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+
     }
+
+
 
     buildTypes {
         release {
@@ -46,7 +50,10 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
 }
+
+
 
 dependencies {
 
@@ -82,6 +89,11 @@ dependencies {
     def nav_version = "2.3.5"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //glide
+    def glide = "4.12.0"
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
 
 }
 kapt {

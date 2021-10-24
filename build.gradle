@@ -2,6 +2,10 @@ buildscript {
     ext {
         compose_version = '1.0.4'
     }
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
         def hilt = "2.39"
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hilt")
