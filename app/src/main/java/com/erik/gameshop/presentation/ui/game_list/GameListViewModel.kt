@@ -2,15 +2,12 @@ package com.erik.gameshop.presentation.ui.game_list
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.erik.gameshop.domain.model.Game
 import com.erik.gameshop.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.text.FieldPosition
 import javax.inject.Inject
 import javax.inject.Named
 

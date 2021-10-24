@@ -18,12 +18,14 @@ val Typography = Typography(
     h2 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 18.sp
+        fontSize = 20.sp,
+        color = Color.White
     ),
-    body2 = TextStyle(
+    body1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 16.sp,
+        color = Color.Gray
     )
     /* Other default text styles to override
 button = TextStyle(

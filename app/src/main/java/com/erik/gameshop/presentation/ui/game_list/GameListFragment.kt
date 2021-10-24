@@ -35,7 +35,6 @@ class GameListFragment : Fragment() {
     private val TAG = "GameListFragment"
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,10 +57,15 @@ class GameListFragment : Fragment() {
                         ) { index, game ->
                             viewModel
                                 .onChangeGameScrollPosition(index)
-                            if((index + 1) >= (page * PAGE_SIZE)){
+                            if ((index + 1) >= (page * PAGE_SIZE)) {
                                 viewModel.nextPage()
                             }
-                            GameCard(game = game, onClick = {})
+                            GameCard(game = game,
+                                onClick = {
+                                        val bundle = Bundle()
+                                        bundle.putParcelable("game", game)
+                                        findNavController().navigate(R.id.action_gameListFragment_to_gameFragment,bundle)
+                                })
                         }
                     }
                 }
