@@ -10,6 +10,7 @@ import com.erik.gameshop.domain.model.Game
 import com.erik.gameshop.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.text.FieldPosition
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -23,7 +24,17 @@ constructor(
 
     val games: MutableState<List<Game>>  = mutableStateOf(listOf())
 
-    fun newSearch(){
+    val page = mutableStateOf(1)
+
+    private var gameScrollPosition = 0
+
+     val PAGE_SIZE = 20
+
+    init {
+        newSearch()
+    }
+
+    private fun newSearch(){
         viewModelScope.launch{
             val result = repository.getAllGames(
                 token = token,
@@ -33,8 +44,41 @@ constructor(
         }
     }
 
-    init {
-        newSearch()
+    fun nextPage(){
+        viewModelScope.launch {
+            //prevent duplicate events due to recompose happening
+            if((gameScrollPosition + 1) >= (page.value * PAGE_SIZE)){
+                incrementPage()
+
+                if(page.value > 1){
+                    viewModelScope.launch {
+                        val result = repository.getAllGames(
+                            token = token,
+                            page = page.value,
+                        )
+                        appendGames(result)
+                    }
+                }
+
+            }
+        }
     }
+
+    //Append new games to the current list of games
+    private fun appendGames(games: List<Game>){
+        val current = ArrayList(this.games.value)
+        current.addAll(games)
+        this.games.value = current
+    }
+
+    private fun incrementPage(){
+        page.value = page.value + 1
+    }
+
+    fun onChangeGameScrollPosition(position: Int){
+        gameScrollPosition = position
+    }
+
+
 
 }

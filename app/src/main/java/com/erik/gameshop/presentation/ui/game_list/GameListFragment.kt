@@ -1,5 +1,6 @@
 package com.erik.gameshop.presentation.ui.game_list
 
+import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,26 +34,38 @@ class GameListFragment : Fragment() {
     private val viewModel: GameListViewModel by viewModels()
     private val TAG = "GameListFragment"
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val page = viewModel.page.value
+
         return ComposeView(requireContext()).apply {
             setContent {
 
                 val games = viewModel.games.value
 
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(16.dp),
-                ) {
-                    itemsIndexed(
-                        items = games
-                    ) { index, game ->
-                        GameCard(game = game, onClick = {})
+                Column() {
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(16.dp),
+                    ) {
+                        itemsIndexed(
+                            items = games
+                        ) { index, game ->
+                            viewModel
+                                .onChangeGameScrollPosition(index)
+                            if((index + 1) >= (page * PAGE_SIZE)){
+                                viewModel.nextPage()
+                            }
+                            GameCard(game = game, onClick = {})
+                        }
                     }
                 }
+
 
             }
         }

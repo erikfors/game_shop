@@ -64,11 +64,16 @@ fun GameCard(
                             .wrapContentWidth(Alignment.Start),
                         style = Typography.h1
                     )
-                    var metaColor = Green500
-                    if (game.metacritic!! < 75) {
-                        metaColor = Orange500
-                    }
-                    Text(
+
+                    game.metacritic?.let { metRat ->
+
+                        var metaColor = Green500
+
+                        if (game.metacritic < 75) {
+                            metaColor = Orange500
+                        }
+
+                        Text(
                         text = game.metacritic.toString(),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -82,7 +87,8 @@ fun GameCard(
                             fontSize = 18.sp,
                             color = metaColor
                         )
-                    )
+                    ) }
+
                 }
             }
         }

@@ -27,6 +27,7 @@ fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitma
     Glide.with(LocalContext.current)
         .asBitmap()
         .load(defaultImage)
+        .apply(RequestOptions.overrideOf(1000,350))
         .into(object: CustomTarget<Bitmap>(){
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 bitmapState.value = resource
