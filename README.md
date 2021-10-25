@@ -1,4 +1,4 @@
-# *IGame Shop*
+# *Game Shop*
 
 **Game Shop** is a simple app that shows you information about the most popular games. With future improvment to send user to the pages where they can buy the games.
 
@@ -44,7 +44,7 @@ The following **optional** features are future optionals:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='app_walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
